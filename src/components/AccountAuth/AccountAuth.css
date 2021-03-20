@@ -1,0 +1,40 @@
+.auth-container{
+    background-color: white;
+    border: 1px solid rgb(47, 46, 46);
+    border-radius: 5px;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding-top: 10px;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid rgb(44, 43, 43);
+    background-color: none;
+  }
+
+.space{
+    margin-right: 20%;
+}
+
+.google-btn{
+    width: 35%;
+    height: 40px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px gray;
+    border: 1px solid rgb(161, 159, 159);
+}
+.google-btn:hover{
+    background-color: orangered;
+}
+.text-click{
+    cursor: pointer;
+    color: rgb(255, 69, 0);
+}
+.login-btn{
+    background-color: rgba(240, 68, 15, 0.931);
+    border: none;
+    padding: 5px;
+    color: white;
+}

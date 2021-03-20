@@ -1,0 +1,23 @@
+.transport-container img{
+    width: 50%;
+}
+.transport-container{
+    margin: 10px;
+    width: 14rem;
+    height: 14rem;
+    padding: 2%;
+    padding-top: 16%;
+    border-radius: 10%;
+    background-color: white;
+    box-shadow: 3px 3px 10px rgb(161, 159, 159);
+
+}
+.transport-container h5{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: rgba(1, 2, 24, 0.856);
+}
+
+.transport-container:hover{
+    background-color: rgba(55, 99, 245, 0.904);
+    box-shadow: 5px 5px 10px rgb(143, 140, 140);
+}

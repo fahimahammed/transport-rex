@@ -1,0 +1,12 @@
+.nav-style{
+    justify-content: center;
+    align-items: center;
+}
+.user-style{
+    font-weight: bold;
+    color: rgb(26, 1, 1);
+    font-family: 'Blinker', sans-serif;
+}
+.nav-options{
+    font-family: 'Acme', sans-serif;
+}
