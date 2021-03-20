@@ -11,7 +11,8 @@ if (!firebase.apps.length){
 }
 
 const AccountAuth = () => {
-    const [userCreate, setUserCreate] = useState();
+    const [validEmail, setValidEmail] = useState(false);
+    const [validPassword, setValidPassword] = useState(false);
     const [newUser, setNewUser] = useState(false);
     const [user, setUser] = useState({
     isSignedIn: false,
@@ -52,16 +53,28 @@ const AccountAuth = () => {
     let isFieldValid = true;
     if(e.target.name === 'email'){
       isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
+      if(!isFieldValid){
+        setValidEmail(true);
+      }
+      else{
+        setValidEmail(false);
+      }
     }
     if(e.target.name === 'password'){
       const isPasswordValid = e.target.value.length > 6;
       const passwordHasNumber =  /\d{1}/.test(e.target.value);
       isFieldValid = isPasswordValid && passwordHasNumber;
+      if(!isFieldValid){
+        setValidPassword(true);
+      }
+      else{
+        setValidPassword(false);
+      }
     }
     if(isFieldValid){
       const newUserInfo = {...user};
       newUserInfo[e.target.name] = e.target.value;
-      setUser(newUserInfo);
+      setUser(newUserInfo);    
     }
   }
 
@@ -157,7 +170,9 @@ const AccountAuth = () => {
       <u onClick={() => setNewUser(!newUser)} name="newUser" className="text-click">{newUser ? 'Login' : 'Create new account' }</u>
       
       <p style={{color: 'red'}}>{user.error}</p>
-      { user.success && <p style={{color: 'green'}}>User { newUser ? 'created' : ''} successfully. Login Now!</p>}
+      { user.success && <p style={{color: 'green'}}>User { newUser ? 'created successfully. Login Now!' : ''} </p>}
+      {validPassword && <p style={{color: 'red'}}>Your Password is invalid. Your password must have 6 characters and atleast 1 number.</p>}
+      {validEmail && <p style={{color: 'red'}}>Your email is invalid.</p>}
       </div>
       <br/>
       <p>or</p>
