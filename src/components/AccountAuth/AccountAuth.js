@@ -170,7 +170,7 @@ const AccountAuth = () => {
       <u onClick={() => setNewUser(!newUser)} name="newUser" className="text-click">{newUser ? 'Login' : 'Create new account' }</u>
       
       <p style={{color: 'red'}}>{user.error}</p>
-      { user.success && <p style={{color: 'green'}}>User { newUser ? 'created successfully. Login Now!' : ''} </p>}
+      { user.success && <p style={{color: 'green'}}> { newUser ? 'User created successfully. Login Now!' : ''} </p>}
       {validPassword && <p style={{color: 'red'}}>Your Password is invalid. Your password must have 6 characters and atleast 1 number.</p>}
       {validEmail && <p style={{color: 'red'}}>Your email is invalid.</p>}
       </div>
