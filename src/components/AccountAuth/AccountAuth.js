@@ -11,6 +11,8 @@ if (!firebase.apps.length){
 }
 
 const AccountAuth = () => {
+    const [validCPass1, setValidCPass1] = useState('');
+    const [validCPass2,  setValidCPass2] = useState('');
     const [validEmail, setValidEmail] = useState(false);
     const [validPassword, setValidPassword] = useState(false);
     const [newUser, setNewUser] = useState(false);
@@ -78,9 +80,18 @@ const AccountAuth = () => {
     }
   }
 
+  const handleChange1 = (event) =>{
+    setValidCPass1(event.target.value);
+    //console.log(event.target.value)
+  }
+  const handleChange2 = (event) =>{
+    setValidCPass2(event.target.value);
+    //console.log(event.target.value)
+  }
+  
   //handle submit
   const handleSubmit = (e) => {
-    if(newUser && user.email && user.password){
+    if(newUser && user.email && user.password && validCPass1 === validCPass2){
       firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
       .then( res => {
         const newUserInfo = {...user};
@@ -94,6 +105,7 @@ const AccountAuth = () => {
         newUserInfo.error = error.message;
         newUserInfo.success = false;
         setUser(newUserInfo);
+        history.replace(from);
         //console.log(error);
       });
     }
@@ -107,7 +119,7 @@ const AccountAuth = () => {
         setUser(newUserInfo);
         setLoggedInUser(newUserInfo);
         history.replace(from);
-        console.log('sign in user info', res.user);
+        //console.log('sign in user info', res.user);
       })
       .catch(function(error) {
         const newUserInfo = {...user};
@@ -151,10 +163,11 @@ const AccountAuth = () => {
         <br/><br/>
         <input style={{width: "70%" }} type="text" name="email" onBlur={handleBlur} placeholder="Your Email address" required/>
         <br/><br/>
-        <input style={{width: "70%" }} type="password" name="password" onBlur={handleBlur} placeholder="Your Password" required/>
+        <input style={{width: "70%" }} type="password" name="password" onChangeCapture={handleChange1} onBlur={handleBlur} placeholder="Your Password" required/>
         <br/><br/>
-        {newUser && <input style={{width: "70%" }} name="password" type="password" onBlur={handleBlur} placeholder="Confirm password"/>}
+        {newUser && <input style={{width: "70%" }} name="password" type="password" onChangeCapture={handleChange2} onBlur={handleBlur} placeholder="Confirm password"/>}
         <br/>
+        {newUser && !(validCPass1 === validCPass2) && <p style={{color: 'red'}}>Password don't match.</p>}
         {
             newUser ? <p></p> : <div>
                   <input type='checkbox'/>
